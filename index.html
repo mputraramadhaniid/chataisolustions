@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Ai Solutions</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <p style="margin: 10px 10px 10px 10px; font-size: 26px; font-weight: bold; color: #212121">Riwayat Chat</p>
+        <ul class="chat-list">
+          <li class="chat">Chat 1</li>
+          <li class="chat">Chat 2</li>
+          <li class="chat">Chat 3</li>
+        </ul>
+      </div>
+
+      <div id="dialog-box">
+        <h3>Kode ruangan Chat Ai Solutions</h3>
+        <input type="text" id="kode-input" placeholder="Masukkan kode (contoh kode01)" />
+        <button id="set-kode-button">Lanjutkan</button>
+      </div>
+
+      <div class="chat-container">
+        <p style="margin: 20px 20px 20px 20px; font-size: 20px; font-weight: bold; color: #212121">
+          Chat Ai Solutions
+          <img style="width: 15px; height: 15px; margin-top: 2px; margin-left: 4px" src="https://img.icons8.com/?size=100&id=15810&format=png&color=000000" alt=" " />
+        </p>
+        <div class="border-top-end" style="border-bottom: 1px solid #ccc; margin-left: 15px; margin-right: 15px"></div>
+        <div class="chat-box" id="chat-box">
+          <!-- Chat messages will appear here -->
+        </div>
+
+        <div class="input-container" style="margin-left: 15px; margin-right: 15px; padding-bottom: 2px">
+          <input style="padding: 15px" type="text" id="user-input" placeholder="Type your message..." />
+          <button>Send</button>
+        </div>
+        <p style="text-align: center; font-size: 14px">CopyRight @2024 M Putra Ramadhani-Id</p>
+      </div>
+    </div>
+
+    <!-- Add your client.js script here -->
+    <script type="module" src="client.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

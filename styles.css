@@ -1,0 +1,309 @@
+/* General styles */
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9; /* Light background for better contrast */
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  background-color: #333; /* Dark background for top navbar */
+  color: #fff;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.navbar-left .menu-btn:hover {
+  background-color: #555; /* Hover effect for menu button */
+}
+
+/* Sidebar */
+.sidebar {
+  flex: 0 0 300px;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.chat-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.chat {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat:hover {
+  background-color: #f0f0f0;
+}
+
+.chat.active {
+  background-color: #e0e0e0; /* Highlight active chat */
+}
+
+/* Chat container */
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
+  border-left: 2px solid #eee;
+  padding: 15px;
+}
+
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.message-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.username {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.message {
+  border-radius: 15px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  margin-top: 5px;
+  max-width: 80%;
+}
+
+.message.user {
+  background-color: #007bff;
+  color: #fff;
+  align-self: flex-end;
+}
+
+.message.ai {
+  background-color: #e4e6eb;
+  color: #333;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+}
+
+.input-container input[type="text"] {
+  flex: 1;
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  outline: none;
+  background-color: #f9f9f9;
+  font-size: 16px;
+}
+
+.input-container button {
+  padding: 12px 20px;
+  margin-left: 10px;
+  background-color: #757575; /* Neutral gray button */
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-container button:hover {
+  background-color: #5e5e5e; /* Darker gray for hover effect */
+}
+
+.copyright {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+  color: #888;
+}
+/* Dialog Box for entering room code */
+#dialog-box {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 30px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  width: 320px;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#dialog-box h3 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 600;
+}
+
+#dialog-box input {
+  padding: 12px;
+  margin-bottom: 15px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#dialog-box input:focus {
+  border-color: #757575;
+  background-color: #fff;
+}
+
+#dialog-box button {
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #757575;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+#dialog-box button:hover {
+  background-color: #5e5e5e; /* Darker gray on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+#dialog-box button:active {
+  background-color: #4e4e4e; /* Even darker gray when clicked */
+  transform: translateY(0); /* Button press effect */
+}
+
+/* Add a slight animation to make it fade in */
+
+/* Mobile view adjustments */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: #f4f4f9; /* Light background for mobile navbar */
+    color: #333;
+    padding: 10px;
+    justify-content: space-between;
+  }
+
+  .navbar-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .menu-btn {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+
+  .navbar-left .menu-btn:hover {
+    background-color: #ddd; /* Hover effect on mobile */
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .chat-container {
+    border-left: none;
+    padding: 10px;
+  }
+
+  .input-container {
+    padding: 10px;
+  }
+}
+
+/* Show navbar on desktop and hide on mobile */
+@media only screen and (min-width: 769px) {
+  .navbar {
+    display: flex; /* Ensure navbar is visible on desktop */
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    display: none; /* Hide navbar on mobile */
+  }
+}
