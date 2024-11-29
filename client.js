@@ -18,21 +18,35 @@ const database = getDatabase(app);
 
 let kodeinput = null; // Variable to hold the user-input 'kodeinput'
 
-// Show the dialog to get 'kodeinput' from the user
+// Function to get the value of a query parameter from the URL
+function getQueryParameter(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
+
+// Show the dialog to get 'kodeinput' from the user or use it from the URL
 document.addEventListener("DOMContentLoaded", () => {
   const dialogBox = document.getElementById("dialog-box");
-  dialogBox.style.display = "block";
+  kodeinput = getQueryParameter("kodeinput"); // Get 'kodeinput' from URL if available
 
-  // When the user clicks "Set Kode", hide the dialog and start interacting with the chat
-  document.getElementById("set-kode-button").addEventListener("click", () => {
-    kodeinput = document.getElementById("kode-input").value.trim();
-    if (kodeinput === "") {
-      alert("Please enter a valid kode.");
-      return;
-    }
+  if (kodeinput) {
+    // If 'kodeinput' is found in the URL, directly start fetching messages
     dialogBox.style.display = "none";
     fetchMessages(kodeinput); // Fetch messages for the given kodeinput folder
-  });
+  } else {
+    // Otherwise, show the dialog box for manual input
+    dialogBox.style.display = "block";
+
+    document.getElementById("set-kode-button").addEventListener("click", () => {
+      kodeinput = document.getElementById("kode-input").value.trim();
+      if (kodeinput === "") {
+        alert("Please enter a valid kode.");
+        return;
+      }
+      dialogBox.style.display = "none";
+      fetchMessages(kodeinput); // Fetch messages for the given kodeinput folder
+    });
+  }
 });
 
 // Function to get the next message ID
@@ -70,7 +84,7 @@ async function sendMessage() {
   userInput.value = ""; // Clear input field
 }
 
-// Function to display messages
+// Function to display messages with markdown support (e.g., **bold**)
 function displayMessage(sender, message, id, kodeinput) {
   const chatBox = document.getElementById("chat-box");
 
@@ -91,9 +105,12 @@ function displayMessage(sender, message, id, kodeinput) {
   const messageWrapper = document.createElement("div");
   messageWrapper.classList.add("message-wrapper");
 
+  // Process markdown to convert **bold** into <strong> tags
+  const formattedMessage = parseMarkdown(message);
+
   const newMessage = document.createElement("div");
   newMessage.classList.add("message");
-  newMessage.textContent = message;
+  newMessage.innerHTML = formattedMessage; // Use innerHTML to support HTML tags (like <strong> for bold)
 
   messageWrapper.appendChild(usernameElement);
   messageWrapper.appendChild(newMessage);
@@ -102,6 +119,13 @@ function displayMessage(sender, message, id, kodeinput) {
   chatBox.appendChild(newMessageContainer);
 
   chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// Function to parse markdown text and convert to HTML
+function parseMarkdown(message) {
+  // Simple parser for **bold** text
+  // Convert **bold** into <strong>bold</strong>
+  return message.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
 }
 
 // Function to fetch messages for the selected `kodeinput`
