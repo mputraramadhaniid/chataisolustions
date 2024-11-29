@@ -93,7 +93,7 @@ function displayMessage(sender, message, id, kodeinput) {
 
   const usernameElement = document.createElement("div");
   usernameElement.classList.add("username");
-  usernameElement.textContent = sender === "me" ? "MPutraRamadhani" : "Chat Ai";
+  usernameElement.textContent = sender === "me" ? "You" : "Chat Ai";
 
   const profileImage = document.createElement("img");
   profileImage.src =
